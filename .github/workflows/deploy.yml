@@ -41,9 +41,6 @@ jobs:
     - name: Update kube config
       run: aws eks update-kubeconfig --name demo-ekscluster
 
-    - name: delete load balancer
-      run: kubectl delete service node-app
-
 
     - name: Upgrade Helm
       run: helm upgrade node-app-chart ./node-app-chart/charts

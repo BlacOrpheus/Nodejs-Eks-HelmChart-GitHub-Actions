@@ -12,38 +12,39 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: Install kubectl
-    #   uses: azure/setup-kubectl@v2.0
-    #   with:
-    #     version: 'v1.27.0'
-    #   id: install
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v2.0
+      with:
+        version: 'v1.27.0'
+      id: install
 
-    # - name: Configure AWS Credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: us-east-1
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-    # - name: Login to Amazon ECR
-    #   id: login-ecr
-    #   uses: aws-actions/amazon-ecr-login@v1
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
-    # - name: Build, tag, and push docker image to Amazon ECR
-    #   env:
-    #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-    #     REPOSITORY: devops
-    #     IMAGE_TAG: latest
-    #   run: |
-    #     docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-    #     docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+    - name: Build, tag, and push docker image to Amazon ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: devops
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name demo-ekscluster
 
+
     - name: Upgrade Helm
       run: helm upgrade node-app-chart ./node-app-chart/charts
 
-    # - name: Deploy nodejs helm chart to EKS
-    #   run: |
-    #     helm install node-app-chart ./node-app-chart/charts
+    #- name: Deploy nodejs helm chart to EKSs
+     # run: |
+      #  helm install node-app-chart ./node-app-chart/charts

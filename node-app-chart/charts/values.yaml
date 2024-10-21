@@ -58,8 +58,8 @@ securityContext: {}
 
 service:
   type: LoadBalancer
-  port: 80
-  targetPort: 8080
+  port: 4000
+  targetPort: 4000
   protocol: TCP
   name: node-app
 
@@ -96,13 +96,13 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 4000
   initialDelaySeconds: 20
   periodSeconds: 20
 readinessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 4000
   initialDelaySeconds: 20
   periodSeconds: 20
 

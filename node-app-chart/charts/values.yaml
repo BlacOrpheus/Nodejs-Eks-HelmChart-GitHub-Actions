@@ -107,8 +107,8 @@ readinessProbe:
   httpGet:
     path: /
     port: 4000
-  initialDelaySeconds: 20
-  periodSeconds: 20
+  initialDelaySeconds: 40
+  periodSeconds: 10
 
 
 #This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/

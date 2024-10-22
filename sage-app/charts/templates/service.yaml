@@ -2,15 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "sage-app.fullname" . }}
-  labels:
-    {{- include "sage-app.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    ports:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
-      protocol: {{ .Values.service.protocol }}
-      name: {{ .Values.service.name }}
+      protocol: TCP
   selector:
-    {{- include "sage-app.selectorLabels" . | nindent 4 }}
+    app: {{ include "sage-app.name" . }}

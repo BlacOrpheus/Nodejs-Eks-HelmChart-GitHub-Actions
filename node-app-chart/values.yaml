@@ -56,24 +56,24 @@ securityContext: {}
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   #port: 80
 
-#service:
- # type: LoadBalancer
-#  port: 4000
- # targetPort: 4000
- # protocol: TCP
- # name: node-app
-
 service:
   type: LoadBalancer
   port: 4000
   targetPort: 4000
   protocol: TCP
-  name: kubernetes
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "alb"  # Use ALB
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTP"
+  name: node-app
+
+#service:
+  #type: LoadBalancer
+ # port: 4000
+ # targetPort: 4000
+  #protocol: TCP
+ # name: kubernetes
+ # annotations:
+   # service.beta.kubernetes.io/aws-load-balancer-type: "alb"  # Use ALB
+    #service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTP"
     #service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "<your-ssl-cert-arn>"  # (Optional for HTTPS)
-    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"  # or "internal"
+   # service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"  # or "internal"
 
 
 

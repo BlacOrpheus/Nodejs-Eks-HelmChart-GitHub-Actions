@@ -46,7 +46,7 @@ jobs:
         helm install node-app-chart ./node-app-chart/charts
 
     - name: Upgrade Helm
-      run: helm upgrade node-app-chart ./node-app-chart/charts
+      run: helm upgrade sage-app ./sage-app/charts
 
     
 

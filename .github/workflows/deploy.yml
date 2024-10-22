@@ -45,8 +45,8 @@ jobs:
       run: |
         helm install sage-app1 ./sage-app1/charts
 
-    - name: Upgrade Helm
-      run: helm upgrade sage-app1 ./sage-app1/charts
+    #- name: Upgrade Helm
+     # run: helm upgrade sage-app1 ./sage-app1/charts
 
     
 
